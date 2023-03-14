@@ -80,3 +80,7 @@ Route::get('edit-company',[App\Http\Controllers\CompanyController::class,'edit_c
 Route::post('update_company',[App\Http\Controllers\CompanyController::class,'update_company'])->name('update_company');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/invite', [App\Http\Controllers\InvitationController::class, 'showInviteForm'])->name('invite.form');
+Route::post('/invite', [App\Http\Controllers\InvitationController::class, 'sendInvite'])->name('invite.send');
+

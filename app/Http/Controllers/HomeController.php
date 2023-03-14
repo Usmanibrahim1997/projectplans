@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\Projects;
 use App\Models\ProjectData;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -35,10 +36,13 @@ class HomeController extends Controller
                      ->with(['projectDetails', 'projectDetails.projectItems'])
                      ->get();
             $projectItems = ProjectData::withCount('projectItems')->pluck('project_items_count')->toArray();
-
+            $totalProjects = Projects::count();
+            $totalCompany = Company::count();
+            $totalUser = User::count();
+            
             // $projects['projectItems'] = $projectItems ?? 0;
 
-            return view('admin.admin_dashborad',compact('projects'));
+            return view('admin.admin_dashborad',compact('projects','totalProjects','totalUser','totalCompany'));
         }
     }
 
