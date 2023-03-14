@@ -63,7 +63,6 @@ Route::get('add-company', function () {
     return view('add_company');
 })->name('add_company');
 
-
 Route::get('admin-dashboard',[App\Http\Controllers\CompanyController::class,'admin_dashboard'])->name('admin-dashboard');
 
 Route::post('update_project_detail/{project_detail_id}',[App\Http\Controllers\CompanyController::class,'updateProjectDetails'])->name('updateProjectDetails');
