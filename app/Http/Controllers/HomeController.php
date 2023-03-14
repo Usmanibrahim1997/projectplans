@@ -40,8 +40,8 @@ class HomeController extends Controller
             $totalCompany = Company::count();
             $totalUser = User::count();
             
-            // $projects['projectItems'] = $projectItems ?? 0;
-
+            // $projects['projectItems'] = $projectItems;
+// dd($projects);
             return view('admin.admin_dashborad',compact('projects','totalProjects','totalUser','totalCompany'));
         }
     }

@@ -336,7 +336,8 @@
                             </div>
                             <div class="row ml-4">
                               <div class="col-md-12">
-                                <span style="font-size: 12px;"> {{$project->project_details_count ?? "0"}} Item / 0 Subitem</span>
+                        
+                                <span style="font-size: 12px;"> {{$project->project_details_count ?? "0"}} Item / {{ isset($project->projectDetails[$key]) && $project->projectDetails[$key]->projectItems->count() ?? "0" }} Subitem</span>
                               </div>
                             </div>
                           </div>
