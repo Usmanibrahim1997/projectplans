@@ -212,7 +212,7 @@ class CompanyController extends Controller
         $projectData = ProjectData::find($project_detail_id);
         $projectData->project_id = $projectData->project_id;
         $projectData->item = $request['item'];
-        $projectData->person = "";
+        $projectData->person = $request->person;
         $projectData->marterial_request = $request['materialRequest'];
         $projectData->request_for_quote = $request['requestForQuote'];
         $projectData->mta_approval = $request['MtaApproval'];
@@ -258,7 +258,7 @@ class CompanyController extends Controller
         $subItem->sub_item_name = $request->sub_item_name;
         $subItem->project_data_id = $request->project_data_id;
         $subItem->owner_name = "";
-        $subItem->status = $request->status;
+        $subItem->status = $request->status ? $request->status : $subItem->status;
         $subItem->date = $request->date;
         $subItem->update();
 
