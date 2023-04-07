@@ -51,12 +51,12 @@
         </div>
     </nav>
     <nav class="navbar container navbar-light navbar-expand-lg" id="navbar-main">
-        <a href="en.html" title="Home" rel="home" class="navbar-brand">
+        <a href="{{ route('index') }}" title="Home" rel="home" class="navbar-brand">
             <img alt="logo" width="195px" height="62px" id="logo-primary"
-                src="{{ asset('assets/image/logo.svg') }}" alt="Home"
+                src="{{ asset('assets/image/wobg_newLogo.png') }}" alt="Home"
                 class="img-fluid align-top logo" />
             <img alt="logo" width="195px" height="62px" id="logo-white"
-                src="{{ asset('assets/image/logo.svg') }}" alt="Home" class="white-logo logo" />
+                src="{{ asset('assets/image/newLogo.png') }}" alt="Home" class="white-logo logo" />
             <span class="ml-2 d-none d-md-inline"></span>
         </a>
         <div class="form-inline navbar-form justify-content-end">

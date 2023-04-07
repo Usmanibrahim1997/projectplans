@@ -232,7 +232,7 @@
 
                                                                                             <div
                                                                                                 class="field field--name-company-subscription-badge field--type-svg-image-field field--label-hidden field__item">
-                                                                                                <?xml version="1.0" encoding="UTF-8"?>
+                                                                                                
                                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                     width="30"
                                                                                                     height="30"
@@ -345,7 +345,7 @@
 
                                                                                             <div
                                                                                                 class="field field--name-company-subscription-badge field--type-svg-image-field field--label-hidden field__item">
-                                                                                                <?xml version="1.0" encoding="UTF-8"?>
+                                                                                            
                                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                     width="30"
                                                                                                     height="30"
@@ -456,7 +456,7 @@
 
                                                                                             <div
                                                                                                 class="field field--name-company-subscription-badge field--type-svg-image-field field--label-hidden field__item">
-                                                                                                <?xml version="1.0" encoding="UTF-8"?>
+                                                                                                
                                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                     width="30"
                                                                                                     height="30"
@@ -567,7 +567,7 @@
 
                                                                                             <div
                                                                                                 class="field field--name-company-subscription-badge field--type-svg-image-field field--label-hidden field__item">
-                                                                                                <?xml version="1.0" encoding="UTF-8"?>
+                                                                                                
                                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                     width="30"
                                                                                                     height="30"
@@ -680,7 +680,7 @@
 
                                                                                             <div
                                                                                                 class="field field--name-company-subscription-badge field--type-svg-image-field field--label-hidden field__item">
-                                                                                                <?xml version="1.0" encoding="UTF-8"?>
+                                                                                                
                                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                     width="30"
                                                                                                     height="30"
@@ -789,7 +789,7 @@
 
                                                                                             <div
                                                                                                 class="field field--name-company-subscription-badge field--type-svg-image-field field--label-hidden field__item">
-                                                                                                <?xml version="1.0" encoding="UTF-8"?>
+                                                                                                
                                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                     width="30"
                                                                                                     height="30"

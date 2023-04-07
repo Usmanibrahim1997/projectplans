@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Admin Dashboard - This is an example dashboard.</title>
+    <title>Bari CHEAC Procurement - Admin Dashboard.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
@@ -469,16 +469,16 @@
                                                       <input type="text" name="unit" value="{{$details->unit ?? ""}}" style="border: none;" class="values">                                     
                                                     </td>
                                                     <td>
-                                                      <input type="text" name="quantity" value="{{$details->quantity ?? ""}}" style="border: none;" class="values">                                     
+                                                      <input type="text" name="quantity" onkeyup="getUnitPrice('{{$details->id}}')" value="{{$details->quantity ?? ""}}" style="border: none;" class="values quantity-{{$details->id}}">                                     
                                                     </td>
                                                     <td>
-                                                      <input type="text" name="unitPrice" value="{{$details->unit_price ?? ""}}" style="border: none;" class="values">                                     
+                                                      <input type="text" name="unitPrice" onkeyup="getUnitPrice('{{$details->id}}')" value="{{$details->unit_price ?? ""}}" style="border: none;" class="values unit-price-{{$details->id}}">                                     
                                                     </td>
                                                     <td>
-                                                      <input type="text" name="totalPOValue" value="{{$details->total_po_value ?? ""}}" style="border: none;" class="values">                                     
+                                                      <input type="text" readonly name="totalPOValue" value="{{$details->total_po_value ?? ""}}" style="border: none;" class="values total-PO-Value-{{$details->id}}">                                     
                                                     </td>
                                                     <td>
-                                                      <input type="text" name="totalPOValueWithVat15" value="{{$details->total_po_value_with_tax ?? ""}}" style="border: none;" class="values">                                     
+                                                      <input type="text" readonly name="totalPOValueWithVat15" value="{{$details->total_po_value_with_tax ?? ""}}" style="border: none;" class="values total-PO-Value-With-Vat-{{$details->id}}">                                     
                                                     </td>
                                                     <td>
                                                       <input type="text" name="venderShopDrawingSubmission" value="{{$details->drawing_submission ?? ""}}" style="border: none;" class="values">                                     
@@ -877,26 +877,25 @@
     <script src="{{ asset('table/js/main.js') }}"></script>
     <script type="text/javascript" src="https://demo.dashboardpack.com/architectui-html-free/assets/scripts/main.js"></script>
     <script>
-        $(document).ready(function(){
-          // $(".select").change(function(){
-          //   $(this).find("option:selected").each(function(){
-          //     var optionValue=$(this).attr("value");
-          //     if(optionValue){
-          //       $(".box").not("."+optionValue).hide();
-          //       $("."+optionValue).show();
-          //       $(".select").addClass('d-none');
-          //     }else{
-          //         $(".box").hide();
-          //     }
-          //   });
-          // }).change();
-      
-          $(".box1").click(function(){
-              $(".box1").hide();
-              $(".selectNew").removeClass('d-none');
-          });
-      
+
+    
+      function getUnitPrice(id){
+        var unitPrice = parseFloat($('.unit-price-' + id).val());
+        var quantityValue = parseFloat($('.quantity-' + id).val());
+        var totalPoValue = unitPrice * quantityValue;
+        var vatAmount = totalPoValue * 0.15;
+        var totalWithVat = totalPoValue + vatAmount;
+        $(`.total-PO-Value-With-Vat-${id}`).val(totalWithVat);
+        $(`.total-PO-Value-${id}`).val(totalPoValue);
+      }
+
+      $(document).ready(function(){
+        $(".box1").click(function(){
+            $(".box1").hide();
+            $(".selectNew").removeClass('d-none');
         });
+    
+      });
     </script>
   </body>
 </html>

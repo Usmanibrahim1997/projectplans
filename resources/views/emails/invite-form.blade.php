@@ -18,7 +18,7 @@
     
     <link rel="stylesheet" href="{{ asset('table/css/style.css') }}">
 
-    <title>Document</title>
+    <title>Invite Members</title>
 </head>
 
 <style>

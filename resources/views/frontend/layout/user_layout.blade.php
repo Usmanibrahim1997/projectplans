@@ -22,7 +22,7 @@
         });
     </script>
     <script src="{{ asset('assets/hotjar.js') }}"></script>
-    <title>Project Suppliers | Sourcing the World</title>
+    <title>Bari CHEAC Procurement | Sourcing the World</title>
     <link rel="stylesheet" media="all" href="{{ asset('assets/style1.css') }}" />
     <link rel="stylesheet" media="all" href="{{ asset('assets/style2.css') }}" />
     <script src="{{ asset('assets/js1.js') }}" defer></script>
