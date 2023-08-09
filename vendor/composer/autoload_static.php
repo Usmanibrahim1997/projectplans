@@ -535,6 +535,7 @@ class ComposerStaticInit5f6d7c882a19e3a5ea1a69008dedc48d
         'App\\Mail\\InvitationMail' => __DIR__ . '/../..' . '/app/Mail/InvitationMail.php',
         'App\\Models\\Company' => __DIR__ . '/../..' . '/app/Models/Company.php',
         'App\\Models\\CompanyMember' => __DIR__ . '/../..' . '/app/Models/CompanyMember.php',
+        'App\\Models\\Department' => __DIR__ . '/../..' . '/app/Models/Department.php',
         'App\\Models\\ProjectData' => __DIR__ . '/../..' . '/app/Models/ProjectData.php',
         'App\\Models\\ProjectItem' => __DIR__ . '/../..' . '/app/Models/ProjectItem.php',
         'App\\Models\\Projects' => __DIR__ . '/../..' . '/app/Models/Projects.php',

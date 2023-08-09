@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use App\Models\CompanyMember;
 use App\Models\Projects;
+use App\Models\Department;
 use App\Models\ProjectData;
 use App\Models\ProjectItem;
 
@@ -164,6 +167,60 @@ class CompanyController extends Controller
                      ->with(['projectDetails', 'projectDetails.projectItems'])
                      ->get();
         return view('admin.admin_dashborad',compact('projects'));
+    }
+
+    public function projectForm()
+    {
+        return view('admin.project.create_form');    
+    }
+
+    public function departmentList()
+    {
+        $deps = Department::all();
+        return view('admin.department.list',compact('deps'));
+
+    }
+
+    public function showProjectList()
+    {
+        $projects = Projects::withCount(['projectDetails'])
+                     ->with(['projectDetails', 'projectDetails.projectItems'])
+                     ->get();
+        $users = User::all();
+        $materials = DB::table('com_list')->get();
+
+        return view('admin.project.project_list',compact('projects','users','materials'));
+    }
+    public function showProject($id)
+    {
+        $projects = Projects::where('id',$id)->withCount(['projectDetails'])->with(['projectDetails', 'projectDetails.projectItems'])->get();
+        $users = User::all();
+        $materials = DB::table('com_list')->get();
+
+        return view('admin.project.project',compact('projects','users','materials'));
+    }
+    
+    public function rfqForm()
+    {
+        $projects = Projects::all();
+        $users = User::all();
+        $deps = Department::all();
+        $materials = DB::table('com_list')->get();
+
+        return view('admin.project.rfq_form',compact('projects','users','materials','deps'));
+    }
+
+    public function departmentForm(){
+        return view('admin.department.form');
+    }
+
+    public function departmentSave(Request $request){
+        $dep = new Department();
+        $dep->department_name = $request->department_name;
+        $dep->status = $request->status;
+        $dep->created_by = $request->created_by;
+        $dep->save();
+        return route('home');
     }
 
     public function addProject(Request $request)

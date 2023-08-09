@@ -30,6 +30,7 @@ return array(
     'App\\Mail\\InvitationMail' => $baseDir . '/app/Mail/InvitationMail.php',
     'App\\Models\\Company' => $baseDir . '/app/Models/Company.php',
     'App\\Models\\CompanyMember' => $baseDir . '/app/Models/CompanyMember.php',
+    'App\\Models\\Department' => $baseDir . '/app/Models/Department.php',
     'App\\Models\\ProjectData' => $baseDir . '/app/Models/ProjectData.php',
     'App\\Models\\ProjectItem' => $baseDir . '/app/Models/ProjectItem.php',
     'App\\Models\\Projects' => $baseDir . '/app/Models/Projects.php',
