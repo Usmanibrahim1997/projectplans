@@ -128,11 +128,6 @@
                                                         <table class="table myaccordion" id="accordion-{{$key}}" style="border-left: 5px solid rgb(120, 75, 209, 0.51);margin: 0; ">
                                                             <thead>
                                                                 <tr>
-                                                                {{-- <th style="width: 3%;">
-                                                                    <div>
-                                                                    <input type="checkbox" class="control-input" id="checkbox-3">
-                                                                    </div>
-                                                                </th> --}}
                                                                 <th>
                                                                     <span style="width:222px">Item</span>
                                                                 </th>
@@ -347,7 +342,7 @@
                                                                                                 </div>
                                                                                             </td>
                                                                                             <td>
-                                                                                                <textarea rows="3" style="border: none;width: 193px;" name="material_description">{{ $submits->material_description }}</textarea>
+                                                                                                <textarea readonly rows="3" style="border: none;width: 193px;" name="material_description">{{ $submits->material_description }}</textarea>
                                                                                             </td>
                                                                                             <td>
                                                                                                 <div class="d-inline-block">
@@ -356,28 +351,28 @@
                                                                                                 </div>    
                                                                                             </td>
                                                                                             <td>
-                                                                                                <textarea rows="3" style="border: none;" name="department_name">{{ $submits->department_name }}</textarea>
+                                                                                                <textarea readonly rows="3" style="border: none;" name="department_name">{{ $submits->department_name }}</textarea>
                                                                                             </td>
                                                                                             <td>
-                                                                                                <textarea rows="3" readonly style="border: none;">{{ $submits->service_type.'-'. date('Y', strtotime($submits->created_at)) .'-'.$index_id }}</textarea>
+                                                                                                <textarea readonly rows="3" style="border: none;">{{ $submits->service_type.'-'. date('Y', strtotime($submits->created_at)) .'-'.'00'.$index_id+1 }}</textarea>
                                                                                             </td>
                                                                                             <td>
-                                                                                                <textarea rows="3" style="border: none;" name="unit" >{{ $submits->unit }}</textarea>
+                                                                                                <textarea readonly rows="3" style="border: none;" name="unit" >{{ $submits->unit }}</textarea>
                                                                                             </td>
                                                                                             <td>
-                                                                                                <textarea rows="3" style="border: none;" name="size" >{{ $submits->size }}</textarea>
+                                                                                                <textarea readonly rows="3" style="border: none;" name="size" >{{ $submits->size }}</textarea>
                                                                                             </td>
                                                                                             <td>
-                                                                                                <textarea rows="3" style="border: none;" name="quantity" >{{ $submits->quantity }}</textarea> 
+                                                                                                <textarea readonly rows="3" style="border: none;" name="quantity" >{{ $submits->quantity }}</textarea> 
                                                                                             </td>
                                                                                             <td>
-                                                                                                <textarea rows="3" style="border: none;" name="used_for" >{{ $submits->used_for }}</textarea> 
+                                                                                                <textarea readonly rows="3" style="border: none;" name="used_for" >{{ $submits->used_for }}</textarea> 
                                                                                             </td>
                                                                                             <td>
-                                                                                                <textarea rows="3" style="border: none;" name="remark" >{{ $submits->remark }}</textarea> 
+                                                                                                <textarea readonly rows="3" style="border: none;" name="remark" >{{ $submits->remark }}</textarea> 
                                                                                             </td>
                                                                                             <td>
-                                                                                                <textarea rows="3" style="border: none;" name="location" >{{ $submits->location }}</textarea> 
+                                                                                                <textarea readonly rows="3" style="border: none;" name="location" >{{ $submits->location }}</textarea> 
                                                                                             </td>
                                                                                             <td>
                                                                                                 @if ($submits->status == "Pending")
@@ -386,13 +381,6 @@
                                                                                                     <div class="green bg-success text-white">Approved</div>
                                                                                                 @elseif ($submits->status == "Closed")
                                                                                                     <div class="blue bg-danger text-white">Closed</div>
-                                                                                                @else  
-                                                                                                    <select name="status" id="" class="select">
-                                                                                                        <option value="" selected disabled>Status</option>
-                                                                                                        <option value="Pending" class="bg-warning text-white">Pending</option>
-                                                                                                        <option value="Approved" class="bg-success text-white">Approved</option>
-                                                                                                        <option value="Closed" class="bg-danger text-white">Closed</option>
-                                                                                                    </select>
                                                                                                 @endif
                                                                                             </td>
                                                                                             <td>
@@ -400,7 +388,7 @@
                                                                                                 <p class="error-message" style="color: red;"></p>
                                                                                             </td>
                                                                                             <td>
-                                                                                                <button type="submit" class="btn btn-success">Update</button>
+                                                                                                {{-- <button type="submit" class="btn btn-success">Update</button> --}}
                                                                                                 @if ($submits->status == "Pending" || $submits->status == "Closed")
                                                                                                     <a href="{{ route('approved_item',$submits->id) }}" class="btn btn-info">Approved</a>
                                                                                                 @endif

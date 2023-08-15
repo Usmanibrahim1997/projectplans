@@ -27,8 +27,10 @@
                                 <h5 class="card-title" style="color: rgb(255, 255, 255); --heading-clamp-lines:1;">{{$projectName}}</h5>
                                 <p class="card-text text-white">Department</p>
                                 <p class="card-text text-white">
-                        
-                                    <span style="font-size: 12px;"> {{ $project['project_items_count'] }} Item Pending</span>
+                                    @php
+                                        $projectItemCount = \App\Models\ProjectItem::where('project_id',$project->id)->where('status','Pending')->get();
+                                    @endphp
+                                    <span style="font-size: 12px;"> {{ $projectItemCount->count() ?? "0" }} Item Pending</span>
                                 </p>
                                 <a href="{{ route('view_pending_item', $project->id) }}" class="btn btn-primary" style="background-color: cadetblue; border:none">View Project</a>
                             </div>

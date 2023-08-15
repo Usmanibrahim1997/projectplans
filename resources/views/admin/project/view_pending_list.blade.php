@@ -106,23 +106,14 @@
             <table style="width: 100%" id="quoteTableHead" class="table-responsive"> 
                 <thead>
                     <tr>
-                        <th style="width: 3%;border-left: 5px solid rgb(120, 75, 209);margin: 0;">
+                        <th style="width: 1%;border-left: 5px solid rgb(120, 75, 209);margin: 0;">
                             <div>
-                                No
+                              #
                             </div>
                         </th>
+                        <th style="width: 1%;">NO</th>
                         <th style="width: 5%;">Material Description</th>
-                        <th style="width: 5%;">Owner</th>
-                        <th style="width: 5%;">Department</th>
                         <th style="width: 5%;">MRF #</th>
-                        <th style="width: 5%;">Size</th>
-                        <th style="width: 5%;">Unit</th>
-                        <th style="width: 5%;">Quantity</th>
-                        <th style="width: 5%;">Used For</th>
-                        <th style="width: 5%;">Remark</th>
-                        <th style="width: 5%;">Location</th>
-                        <th style="width: 5%;">Status</th>
-                        <th style="width: 5%;">Requried At</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -132,60 +123,18 @@
                                 <tr>
                                     <td style="border-left: 5px solid rgb(120, 75, 209);margin: 0;">
                                         <div>
-                                            #{{ $index+1 }}
+                                          <i class="pe-7s-plus icon-gradient bg-mean-fruit" style="font-size: 24px;
+                                            color: black !important;
+                                            -webkit-text-fill-color: black;">
+                                          </i>
                                         </div>
                                     </td>
+                                    <td>#{{ $index+1 }}</td>
                                     <td>
-                                        <textarea rows="3" style="border: none;" name="material_description">{{ $submits->material_description }}</textarea>
+                                        <span>{{ $submits->material_description }}</span>
                                     </td>
                                     <td>
-                                        <div class="d-inline-block">
-                                            <img src="{{ asset('table/images/dapulse-person-column.svg') }}" width="40" height="40" data-toggle="modal" data-target=".bd-example-modal-sm">
-                                            <p style="text-transform: uppercase">{{ $submits->owner_name }}</p>
-                                        </div>    
-                                    </td>
-                                    <td>
-                                        <textarea rows="3" style="border: none;" name="department_name">{{ $submits->department_name }}</textarea>
-                                    </td>
-                                    <td>
-                                        <textarea rows="3" style="border: none;" name="service_type">{{ $submits->service_type }}</textarea>
-                                    </td>
-                                    <td>
-                                        <textarea rows="3" style="border: none;" name="size" >{{ $submits->size }}</textarea>
-                                    </td>
-                                    <td>
-                                        <textarea rows="3" style="border: none;" name="unit" >{{ $submits->unit }}</textarea>
-                                    </td>
-                                    <td>
-                                        <textarea rows="3" style="border: none;" name="quantity" >{{ $submits->quantity }}</textarea> 
-                                    </td>
-                                    <td>
-                                        <textarea rows="3" style="border: none;" name="used_for" >{{ $submits->used_for }}</textarea> 
-                                    </td>
-                                    <td>
-                                        <textarea rows="3" style="border: none;" name="remark" >{{ $submits->remark }}</textarea> 
-                                    </td>
-                                    <td>
-                                        <textarea rows="3" style="border: none;" name="location" >{{ $submits->location }}</textarea> 
-                                    </td>
-                                    <td>
-                                        @if ($submits->status == "Pending")
-                                            <div class="red bg-warning text-white" >Pending</div>
-                                        @elseif ($submits->status == "Approved")
-                                            <div class="green bg-success text-white">Approved</div>
-                                        @elseif ($submits->status == "Stuck")
-                                            <div class="blue bg-danger text-white">stuck</div>
-                                        @else  
-                                            <select name="status" id="" class="select">
-                                                <option value="" selected disabled>Status</option>
-                                                <option value="Pending" class="bg-warning text-white">Pending</option>
-                                                <option value="Approved" class="bg-success text-white">Approved</option>
-                                                <option value="Stuck" class="bg-danger text-white">Stuck</option>
-                                            </select>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <input type="date" name="requried_at" value="{{ $submits->requried_at }}" style="border: none;">
+                                        <a href="#">{{ $submits->service_type }}</a>
                                     </td>
                                 </tr>
                             @endif    
