@@ -4,14 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use App\Models\CompanyMember;
 use App\Models\Projects;
+use App\Models\Department;
 use App\Models\ProjectData;
 use App\Models\ProjectItem;
 
 
 class CompanyController extends Controller
 {
+    public function userList()
+    {
+        $users = User::all();
+        return view('admin.user.list',compact('users'));
+
+    }
     public function save_company(Request $request)
     {
         if($request->hasfile('logo')) 
@@ -164,6 +173,160 @@ class CompanyController extends Controller
                      ->with(['projectDetails', 'projectDetails.projectItems'])
                      ->get();
         return view('admin.admin_dashborad',compact('projects'));
+    }
+
+    public function projectForm()
+    {
+        return view('admin.project.create_form');    
+    }
+
+    public function departmentList()
+    {
+        $deps = Department::all();
+        return view('admin.department.list',compact('deps'));
+
+    }
+
+    public function showProjectList()
+    {
+        $projects = Projects::withCount(['projectDetails'])
+                     ->with(['projectDetails', 'projectDetails.projectItems'])
+                     ->get();
+        $users = User::all();
+        $materials = DB::table('com_list')->get();
+
+        return view('admin.project.project_list',compact('projects','users','materials'));
+    }
+    public function showProject($id)
+    {
+        $projects = Projects::where('id',$id)->withCount(['projectDetails','projectItems'])->with(['projectDetails', 'projectItems'])->get();
+        $users = User::all();
+        $materials = DB::table('com_list')->get();
+
+        return view('admin.project.project',compact('projects','users','materials'));
+    }
+    
+    public function rfqForm()
+    {
+        $projects = Projects::all();
+        $users = User::all();
+        $deps = Department::all();
+        $materials = DB::table('com_list')->get();
+        return view('admin.project.rfq_form',compact('projects','users','materials','deps'));
+    }
+    public function itemApproved($id)
+    {
+        $items = ProjectItem::find($id);
+        $items->status = 'Approved';
+        $items->update();
+        return redirect()->back();
+    }
+    public function itemApprovedAll($id)
+    {
+        $items = ProjectItem::where('project_id',$id)->get();
+        foreach($items as $item){
+            $item->status = 'Approved';
+            $item->save();
+        }
+        return redirect()->back();
+    }
+    public function rfqApproved()
+    {
+        $projectItemApproved = Projects::withCount('projectItems')->with('projectItems')->get();
+        return view('admin.project.approved_rfq',compact('projectItemApproved'));
+    }
+
+    public function viewRfqApproved($id)
+    {
+        $projectItemApproved = Projects::where('id',$id)->with('projectItems')->get();
+        return view('admin.project.view_approved_list',compact('projectItemApproved'));
+    }
+
+    public function rfqPending()
+    {
+        $projectItemPending = Projects::withCount('projectItems')->with('projectItems')->get();
+        return view('admin.project.pending_rfq',compact('projectItemPending'));
+    }
+
+    public function viewRfqPending($id)
+    {
+        $projectItemPending = Projects::where('id',$id)->with('projectItems')->get();
+        return view('admin.project.view_pending_list',compact('projectItemPending'));
+    }
+
+    public  function rfqClosed()
+    {
+        $projectItemClosed = Projects::with('projectItems')->get();
+        return view('admin.project.closed_rfq',compact('projectItemClosed'));
+    }
+
+    public function viewRfqClosed($id)
+    {
+        $projectItemClosed = Projects::where('id',$id)->with('projectItems')->get();
+        return view('admin.project.view_closed_list',compact('projectItemClosed'));
+    }
+
+    public function rfqFormSave(Request $request)
+    {
+        
+        $project_id = $request->input('project_id');
+        $created_date = $request->input('created_date');
+        $department_name = $request->input('department_name');
+        $service_type = $request->input('service_type');
+        $materialDescriptions = $request->input('material_description');
+        $units = $request->input('unit');
+        $sizes = $request->input('size');
+        $quantities = $request->input('quantity');
+        $usedFors = $request->input('used_for');
+        $requiredAts = $request->input('requried_at');
+        $locations = $request->input('location');
+        $remarks = $request->input('remark');
+        
+        if($request->hasfile('attachment')) 
+        { 
+            $file = $request->attachment;
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename =time().'.'.$extension;
+            $attachment = $file->move('uploads/rfq_document/', $filename);
+        }
+
+        foreach ($materialDescriptions as $key => $materialDescription) {
+            $projectItem = new ProjectItem();
+    
+            $projectItem->project_id = $project_id;
+            $projectItem->sub_item_name = "";
+            $projectItem->owner_name = auth()->user()->name;
+            $projectItem->date = $created_date ?? "";
+            $projectItem->department_name = $department_name;
+            $projectItem->service_type = $service_type;
+            $projectItem->material_description = $materialDescription;
+            $projectItem->attachment = $attachment[$key] ?? "";
+            $projectItem->unit = $units[$key];
+            $projectItem->status = 'Pending';
+            $projectItem->size = $sizes[$key];
+            $projectItem->quantity = $quantities[$key];
+            $projectItem->used_for = $usedFors[$key];
+            $projectItem->requried_at = $requiredAts[$key];
+            $projectItem->location = $locations[$key];
+            $projectItem->remark = $remarks[$key];
+    
+            $projectItem->save();
+        }
+
+        return redirect()->back();
+    }
+
+    public function departmentForm(){
+        return view('admin.department.form');
+    }
+
+    public function departmentSave(Request $request){
+        $dep = new Department();
+        $dep->department_name = $request->department_name;
+        $dep->status = $request->status;
+        $dep->created_by = $request->created_by;
+        $dep->save();
+        return route('home');
     }
 
     public function addProject(Request $request)

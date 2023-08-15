@@ -18,6 +18,6 @@ class ProjectData extends Model
 
     public function projectItems()
     {
-        return $this->hasMany(ProjectItem::class, 'project_data_id');
+        return $this->hasMany(ProjectItem::class, 'project_id');
     }
 }

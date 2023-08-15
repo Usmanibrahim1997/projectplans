@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\Projects;
 use App\Models\ProjectData;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 class HomeController extends Controller
@@ -27,24 +28,24 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $materials = DB::table('com_list')->get();
         $user = auth()->user();
         $company = Company::where('user_id',$user->id)->first();
         if($user->roles == "User"){
             return view('home',compact('company'));
         }else{
             $projects = Projects::withCount(['projectDetails'])
-                     ->with(['projectDetails', 'projectDetails.projectItems'])
-                     ->get();
-            $projectItems = ProjectData::withCount('projectItems')->pluck('project_items_count')->toArray();
+                ->with(['projectDetails', 'projectDetails.projectItems'])
+                ->get();
+       
             $totalProjects = Projects::count();
             $totalCompany = Company::count();
             $totalUser = User::count();
             $users = User::all();
-            
-            // $projects['projectItems'] = $projectItems;
-// dd($projects);
-            return view('admin.admin_dashborad',compact('projects','totalProjects','totalUser','totalCompany','users'));
+           
+            return view('admin.admin_dashborad',compact('projects','totalProjects','totalUser','totalCompany','users','materials'));
         }
+
     }
 
     // public function admin_dashboard()

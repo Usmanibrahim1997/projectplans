@@ -82,7 +82,7 @@
                 src="{{ asset('assets/image/wobg_newLogo.png') }}" alt="Home"
                 class="img-fluid align-top logo" />
             <img alt="logo" width="195px" height="62px" id="logo-white"
-                src="{{ asset('assets/image/newLogo.png') }}" alt="Home" class="white-logo logo" />
+                src="{{ asset('assets/image/newLogo.PNG') }}" alt="Home" class="white-logo logo" />
             <span class="ml-2 d-none d-md-inline"></span>
         </a>
 
