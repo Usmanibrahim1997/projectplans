@@ -133,7 +133,9 @@
                                         <span>{{ $submits->material_description }}</span>
                                     </td>
                                     <td>
-                                        <a href="" data-toggle="modal" data-target="#requestMaterial-{{$index}}">{{ $submits->service_type.'-'. date('Y', strtotime($submits->created_at)) .'-'.'00'.$index+1 }}</a>
+                                        <a href="" data-toggle="modal" data-target="#requestMaterial-{{$index}}">{{ $submits->service_type.'-'. date('Y', strtotime($submits->created_at)) .'-'. '00' . ($index+1) }}
+
+</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -161,7 +163,7 @@
                                                                 <tr>
                                                                   <td>#1</td>
                                                                   <td><textarea readonly rows="3" style="border: none;">{{ $submits->material_description }}</textarea></td>
-                                                                  <td>{{ $submits->service_type.'-'. date('Y', strtotime($submits->created_at)) .'-'.'00'.$index+1 }}</td>
+                                                                  <td>{{ $submits->service_type.'-'. date('Y', strtotime($submits->created_at)) .'-'. '00' . ($index+1) }}</td>
                                                                   <td></td>
                                                                   <td></td>
                                                                   <td></td>
@@ -222,7 +224,7 @@
                             Department Name : {{ $submits->department_name }}   
                           </th>
                           <th>
-                            Ref NO : {{ $submits->service_type.'-'. date('Y', strtotime($submits->created_at)) .'-'.'00'.$index+1 }}
+                            Ref NO : {{ $submits->service_type.'-'. date('Y', strtotime($submits->created_at)) .'-'. '00' . ($index+1) }}
                           </th>
                         </tr>
                     </thead>
@@ -317,7 +319,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Send message</button>
+          <button type="button" class="btn btn-primary">Send</button>
         </div>
       </div>
     </div>
